@@ -36,16 +36,16 @@ except UserWarning as e:
 packet = gpsd.get_current()
 
 # See the inline docs for GpsResponse for the available data
-# pprint(vars(packet), indent=4)
+pprint(vars(packet), indent=4)
 
 dt = gps_str_to_local_human(packet.time)
 
 dt_formated = dt_format(dt, military=False)
 
-print("Current time: {}".format(dt_formated))
-print("Latitude: {}".format(packet.lat))
-print("Longitude: {}".format(packet.lon))
-print("Altitude: {}".format(packet.alt))
+# print("Current time: {}".format(dt_formated))
+# print("Latitude: {}".format(packet.lat))
+# print("Longitude: {}".format(packet.lon))
+# print("Altitude: {}".format(packet.alt))
 
 # 'alt': float,
 # 'climb': float,
