@@ -4,15 +4,13 @@ import RPi.GPIO as GPIO
 # Source: https://raspberrypi.stackexchange.com/a/56454
 
 LOOP_IN = 16
-LOOP_OUT = 22
+# LOOP_OUT = 22
 
-@asyncio.coroutine
-def delayed_raise_signal():
-    yield from asyncio.sleep(1)
-    print("Button push detected!")
-    print("Adding current location to database")
-
-    # GPIO.output(LOOP_OUT, GPIO.HIGH)
+# @asyncio.coroutine
+# def delayed_raise_signal():
+#     yield from asyncio.sleep(1)
+#     print("Button push detected!")
+#     print("Adding current location to database")
 
 @asyncio.coroutine
 def stop_loop():
