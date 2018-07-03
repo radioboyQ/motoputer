@@ -25,16 +25,15 @@ def stop_loop():
 
 def gpio_event_on_loop_thread():
     print("[*] Threadsafe function.")
+    print("[*] Adding current location to database")
     # asyncio.async(stop_loop())
 
 def setup():
     GPIO.setmode(GPIO.BOARD)
-    # GPIO.setup(16, GPIO.IN)
     GPIO.setup(LOOP_IN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
     def on_gpio_event(channel):
         print("[!] Button pushed.")
-        print("[*] Adding current location to database")
         loop.call_soon_threadsafe(gpio_event_on_loop_thread)
 
     loop = asyncio.get_event_loop()
