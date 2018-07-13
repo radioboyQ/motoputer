@@ -48,4 +48,13 @@ gpsd.connect()
 
 packet = get_current_position(gpsd)
 
-insert_position(packet)
+# Error trapping for no fix yet
+if packet.mode == 0 or packet.mode == 1:
+    print("[!] No fix yet. Try again in a moment.")
+elif packet.mode == 2:
+    print("[*] 3D fix acquired.")
+    insert_position(packet)
+else:
+    print("[*] 2D fix acquired.")
+    print("[!] Not written to database because your code is bad m'kay?")
+    # insert_position(packet)

@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 
 # Source: https://raspberrypi.stackexchange.com/a/56454
 
-LOOP_IN = 16
+BTN_IN = 16
 # LOOP_OUT = 22
 
 # @asyncio.coroutine
@@ -28,14 +28,13 @@ def gpio_event_on_loop_thread():
 
 def setup():
     GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(LOOP_IN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(BTN_IN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
     def on_gpio_event(channel):
-        print("[!] Button pushed.")
         loop.call_soon_threadsafe(gpio_event_on_loop_thread)
 
     loop = asyncio.get_event_loop()
-    GPIO.add_event_detect(LOOP_IN, GPIO.RISING, callback=on_gpio_event, bouncetime=2000)
+    GPIO.add_event_detect(BTN_IN, GPIO.RISING, callback=on_gpio_event, bouncetime=2000)
     asyncio.sleep(1)
 
 if __name__ == '__main__':
